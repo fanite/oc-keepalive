@@ -5,10 +5,9 @@ LABEL org.opencontainers.image.authors="fanite"
 ENV TZ Asia/Shanghai
 
 RUN set -ex \
-    && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
     && apk update \
-    && apk add --no-cache speedtest \
-    && apk add --no-cache --virtual .build-deps alpine-conf git curl libc-dev gcc g++ make cmake
+    && apk add --no-cache speedtest-cli \
+    && apk add --no-cache --virtual .build-deps alpine-conf sudo git curl libc-dev gcc g++ make
 
 RUN /sbin/setup-timezone -z Asia/Shanghai
 
@@ -18,8 +17,9 @@ RUN git clone https://github.com/flow2000/lookbusy.git \
     && cd lookbusy \
     && chmod +x ./configure \
     && ./configure \
-    && make \
-    && make install
+    && make
+
+RUN cp /working/lookbusy/lookbusy /usr/bin
 
 COPY ./scripts /scripts
 
