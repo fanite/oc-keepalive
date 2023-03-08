@@ -25,9 +25,7 @@ COPY ./scripts /scripts
 
 RUN chmod +x /scripts/*.sh
 
-RUN rm -rf /working \
-    && apk del .build-deps \
-    && apt autoremove -y && apt autoclean && apt remove -y && apt clean
+RUN rm -rf /working && apk del .build-deps
 
 ENTRYPOINT ['/usr/bin/lookbusy', '-h']
 
