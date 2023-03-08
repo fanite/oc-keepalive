@@ -19,7 +19,8 @@ RUN git clone https://github.com/flow2000/lookbusy.git \
     && ./configure \
     && make
 
-RUN cp /working/lookbusy/lookbusy /usr/bin
+RUN cp /working/lookbusy/lookbusy /usr/bin/lookbusy \
+    && ls -al /usr/bin/
 
 COPY ./scripts /scripts
 
