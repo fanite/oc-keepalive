@@ -7,7 +7,7 @@ ENV TZ Asia/Shanghai
 RUN set -ex \
     && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
     && apk update \
-    && apk add --no-cache speedtest
+    && apk add --no-cache speedtest \
     && apk add --no-cache --virtual .build-deps alpine-conf git curl libc-dev gcc g++ make cmake
 
 RUN /sbin/setup-timezone -z Asia/Shanghai
