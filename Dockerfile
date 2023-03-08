@@ -25,6 +25,8 @@ COPY ./scripts /scripts
 
 RUN chmod +x /scripts/*.sh
 
+RUN apk del .build-deps
+
 ENTRYPOINT ['/usr/bin/lookbusy', '-h']
 
 USER root
