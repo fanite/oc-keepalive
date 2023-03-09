@@ -38,6 +38,6 @@ COPY --from=builder /working/lookbusy/lookbusy /usr/bin/lookbusy
 
 RUN apk add --no-cache speedtest-cli
 
-ENTRYPOINT ["/bin/sh"]
+ENTRYPOINT ["/scripts/entrypoint.sh"]
 
 USER root
