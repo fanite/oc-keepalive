@@ -26,8 +26,16 @@ RUN apk del .build-deps \
     && apk add --no-cache speedtest-cli \
     && cp /working/lookbusy/lookbusy /usr/bin/lookbusy
 
-RUN rm -rf /working
+FROM --platform=$TARGETPLATFORM alpine:latest
 
-ENTRYPOINT ["/bin/sh"]
+ENV TZ Asia/Shanghai
+
+COPY ./scripts /scripts
+
+RUN chmod +x /scripts/*.sh
+
+COPY --from=builder /working/lookbusy/lookbusy /usr/bin/lookbusy
+
+RUN apk add --no-cache speedtest-cli
 
 USER root
