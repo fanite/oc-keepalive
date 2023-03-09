@@ -28,6 +28,6 @@ RUN apk del .build-deps \
 
 RUN rm -rf /working
 
-ENTRYPOINT ['/usr/bin/lookbusy', '-h']
+ENTRYPOINT ['ls', '-al', '/usr/bin/']
 
 USER root
