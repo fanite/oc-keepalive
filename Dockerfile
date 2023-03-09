@@ -38,6 +38,7 @@ COPY --from=builder /working/lookbusy/lookbusy /usr/bin/lookbusy
 
 RUN apk add --no-cache speedtest-cli
 
-ENTRYPOINT ["/scripts/entrypoint.sh"]
+RUN echo -e "0 30  2 * * ? /bin/sh -ec timeout -k 0 2h /script/lookbusy.sh 2>&1 &">/var/spool/cron/crontabs/root \
+    && echo -e "0 0 0/2 * * ? /bin/sh -ec /script/speedtest.sh 2>&1 &">>/var/spool/cron/crontabs/root
 
 USER root
