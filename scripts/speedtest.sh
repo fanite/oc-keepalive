@@ -2,4 +2,4 @@
 
 pkill speedtest
 
-/usr/bin/speedtest --accept-license
+/usr/bin/speedtest --list
